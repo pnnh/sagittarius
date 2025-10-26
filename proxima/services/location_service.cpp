@@ -8,7 +8,7 @@
 #include "quark/business/models/articles/Notebook.h"
 #include "quark/services/database/sqlite_service.h"
 
-proxima::LocationService::LocationService() {
+sagittarius::LocationService::LocationService() {
   auto appDir = UserService::EnsureApplicationDirectory("/Polaris/Index");
   dbPath = appDir.toStdString() + "/Library.db";
 
@@ -32,7 +32,7 @@ proxima::LocationService::LocationService() {
 }
 
 std::optional<quark::PSLocationModel>
-proxima::LocationService::FindLocation(const QString &uid) const {
+sagittarius::LocationService::FindLocation(const QString &uid) const {
   auto findSql = QString("select * from locations where uid = :uid").
       toStdString();
 
@@ -65,7 +65,7 @@ proxima::LocationService::FindLocation(const QString &uid) const {
 }
 
 std::expected<QVector<quark::PSLocationModel>, quark::MTCode>
-proxima::LocationService::SelectLocations() const {
+sagittarius::LocationService::SelectLocations() const {
   QVector<quark::PSLocationModel> libraryList;
   auto selectSql = QString("select * from locations").toStdString();
   auto sqliteService = quark::MTSqliteService(dbPath);
@@ -90,7 +90,7 @@ proxima::LocationService::SelectLocations() const {
   return libraryList;
 }
 
-void proxima::LocationService::InsertOrUpdateLocation(
+void sagittarius::LocationService::InsertOrUpdateLocation(
     const QVector<quark::PSLocationModel> &libraryList) {
 
   const auto insertSql =
@@ -117,7 +117,7 @@ void proxima::LocationService::InsertOrUpdateLocation(
   }
 }
 
-void proxima::LocationService::InsertOrUpdateLocation(
+void sagittarius::LocationService::InsertOrUpdateLocation(
     const quark::PSLocationModel &libraryModel) {
   QVector<quark::PSLocationModel> libraryList;
   libraryList.append(libraryModel);

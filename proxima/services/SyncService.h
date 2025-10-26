@@ -8,5 +8,5 @@ public:
   int SyncImages(const QString &path);
 
 private:
-  proxima::LocationService libraryService;
+  sagittarius::LocationService libraryService;
 };

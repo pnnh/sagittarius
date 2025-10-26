@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.29...3.31)
 
-project(Proxima VERSION 0.1.0 LANGUAGES C CXX)
+project(Sagittarius VERSION 0.1.0 LANGUAGES C CXX)
 
 if (APPLE)
     enable_language(OBJC OBJCXX Swift)
@@ -45,7 +45,7 @@ endif ()
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 
-set(APP_NAME MTProxima)
+set(APP_NAME MTSagittarius)
 
 # 查找并引用Qt库
 find_package(
@@ -69,10 +69,10 @@ qt_policy(SET QTP0004 NEW)
 
 qt_standard_project_setup()
 
-file(GLOB_RECURSE PROXIMA_SOURCES
-        proxima/main.cpp
-        proxima/services/*.cpp
-        proxima/tests/*.cpp
+file(GLOB_RECURSE SAGITTARIUS_SOURCES
+        sagittarius/main.cpp
+        sagittarius/services/*.cpp
+        sagittarius/tests/*.cpp
         quark/tests/*.c
         quark/tests/*.cpp
         quark/business/*.cpp
@@ -82,22 +82,22 @@ file(GLOB_RECURSE PROXIMA_SOURCES
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     file(GLOB_RECURSE DARWIN_SOURCES
-            proxima/macos/*.cpp
-            proxima/macos/*.mm
-            proxima/macos/*.swift
+            sagittarius/macos/*.cpp
+            sagittarius/macos/*.mm
+            sagittarius/macos/*.swift
             module.modulemap)
-    list(APPEND PROXIMA_SOURCES ${DARWIN_SOURCES})
+    list(APPEND SAGITTARIUS_SOURCES ${DARWIN_SOURCES})
 
     # 添加xcode生成的Swift头文件路径
     include_directories(${CMAKE_CURRENT_BINARY_DIR}/${APP_NAME}.build/Debug/DerivedSources)
 elseif (WIN32)
     file(GLOB_RECURSE WINDOWS_SOURCES
-            proxima/windows/*.cpp)
-    list(APPEND PROXIMA_SOURCES ${WINDOWS_SOURCES})
+            sagittarius/windows/*.cpp)
+    list(APPEND SAGITTARIUS_SOURCES ${WINDOWS_SOURCES})
 endif ()
 
 qt_add_executable(${APP_NAME} MACOSX_BUNDLE WIN32 MANUAL_FINALIZATION)
-target_sources(${APP_NAME} PUBLIC ${PROXIMA_SOURCES})
+target_sources(${APP_NAME} PUBLIC ${SAGITTARIUS_SOURCES})
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     # 添加xcode生成的Swift头文件路径
@@ -111,9 +111,9 @@ elseif (WIN32)
     target_link_libraries(${APP_NAME} PUBLIC dwmapi UxTheme)
 endif ()
 
-#file(GLOB_RECURSE PROXIMA_MODULES
-#        proxima/*.cxx
-#        proxima/*.ixx
+#file(GLOB_RECURSE SAGITTARIUS_MODULES
+#        sagittarius/*.cxx
+#        sagittarius/*.ixx
 #        quark/tests/*.cxx
 #        quark/tests/*.ixx
 #        quark/business/*.cxx
@@ -128,7 +128,7 @@ endif ()
 #target_sources(${APP_NAME}
 #        PUBLIC
 #        FILE_SET CXX_MODULES FILES
-#        ${PROXIMA_MODULES}
+#        ${SAGITTARIUS_MODULES}
 #)
 
 target_link_libraries(

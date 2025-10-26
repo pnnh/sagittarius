@@ -3,7 +3,7 @@
 #include <quark/services/filesystem/filesystem.h>
 
 #include "quark/business/filesystem/file.h"
-#include "proxima/services/location_service.h"
+#include "sagittarius/services/location_service.h"
 #include "quark/infra/utils/md5.h"
 
 LocationViewModel::LocationViewModel(QObject *parent)
@@ -39,7 +39,7 @@ void LocationViewModel::appendDirectory(QVariant qmlVar) {
   std::cerr << "value: " << newPath.toStdString() << std::endl;
 
   std::filesystem::path stdPath = newPath.toStdString();
-  auto locSvc = proxima::LocationService();
+  auto locSvc = sagittarius::LocationService();
   quark::PSLocationModel model;
   model.URN = quark::calcMd5(newPath.toStdString(), true);
   model.Name = stdPath.filename();
@@ -51,7 +51,7 @@ void LocationViewModel::appendDirectory(QVariant qmlVar) {
 void LocationViewModel::loadData() {
   qDebug() << "loadData";
 
-  const auto locSvc = proxima::LocationService();
+  const auto locSvc = sagittarius::LocationService();
 
   auto selectResult = locSvc.SelectLocations();
   if (!selectResult.has_value()) {

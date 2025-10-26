@@ -1,6 +1,6 @@
 #include "SyncThread.h"
 
-#include "proxima/services/SyncService.h"
+#include "sagittarius/services/SyncService.h"
 
 #include <QDebug>
 

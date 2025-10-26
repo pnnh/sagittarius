@@ -1,6 +1,6 @@
 #pragma once
 
-#include "proxima/macos/macwindow.h"
+#include "sagittarius/macos/macwindow.h"
 
 #include <qabstractitemmodel.h>
 #include <QtQml/qqmlregistration.h>

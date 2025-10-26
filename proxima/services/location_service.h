@@ -8,7 +8,7 @@
 
 #include <expected>
 
-namespace proxima {
+namespace sagittarius {
 class LocationService {
 public:
   LocationService();
